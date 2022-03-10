@@ -16,22 +16,18 @@ class Database {
     fun initDatabase(personajesRepository: PersonajesRepository): CommandLineRunner {
         return CommandLineRunner {
 
-            val lista = todosPersonajes()
-            lista.forEach {
-                println("println en bucle for each"+it)
-                personajesRepository.save(it)
-            }
-            println("print personajeRepoository"+personajesRepository.findAll())
+             todosPersonajes(personajesRepository)
+            println(personajesRepository)
+
         }
     }
-    fun todosPersonajes():List<Personajes> {
+    fun todosPersonajes(personajesRepository: PersonajesRepository) {
 
-        var lista = listOf<Personajes>()
 
         val client = OkHttpClient()
 
         val request = Request.Builder()
-        request.url("https://swapi.dev/api/people")
+        request.url("http://swapi.dev/api/people")
 
 
         val call = client.newCall(request.build())
@@ -53,12 +49,16 @@ class Database {
                     val body = responseBody.string()
                     val gson= Gson()
                     val personajeResponse = gson.fromJson(body,PersonajesResponse::class.java)
-                    lista = personajeResponse.results
-                    println("resultado del request"+lista)
+                    personajeResponse.results.forEach{
+                        personajesRepository.save(it)
+                    }
+                    println(personajesRepository.findAll())
+
+
                 }
             }
         })
-        println("resultado después de request "+lista)
-        return lista
+
     }
 }
+

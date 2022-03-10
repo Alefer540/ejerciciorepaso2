@@ -17,14 +17,14 @@ data class Personajes  (
     val birthYear: String,
     val gender: String,
     val homeworld: String,
-    @ElementCollection
-    val films: List<String>,
-    @ElementCollection
-    val species: List<String>,
-    @ElementCollection
-    val vehicles: List<String>,
-    @ElementCollection
-    val starships: List<String>,
+   // @ElementCollection
+    //val films: ArrayList<String>,
+    //@ElementCollection
+   // val species: ArrayList<String>,
+   // @ElementCollection
+   // val vehicles: ArrayList<String>,
+   // @ElementCollection
+   //val starships: ArrayList<String>,
     val created: String,
     val edited: String,
     val url: String

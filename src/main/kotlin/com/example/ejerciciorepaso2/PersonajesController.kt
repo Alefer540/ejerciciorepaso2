@@ -14,8 +14,8 @@ class PersonajesController(private val personajesRepository: PersonajesRepositor
     }
     @GetMapping("people/{id}")
      fun mostrarporid(@PathVariable id:Int):Personajes{
-         val pokemon=personajesRepository.getById(id)
-        return pokemon
+         val personajito=personajesRepository.getById(id)
+        return personajito
     }
     @PostMapping("insertPeople")
     fun introducir(@RequestBody datos:String){
