@@ -35,6 +35,7 @@ class Database {
 
 
         val call = client.newCall(request.build())
+
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 println(e.toString())
